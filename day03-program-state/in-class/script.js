@@ -18,11 +18,15 @@ var secretWordGame = function (input) {
   var comWordChoice = ComWordGen();
   var message = "";
   if (comWordChoice == input) {
-    message = "Congrats! You guess correctly. ";
+    message =
+      "Congrats! You guess correctly. " +
+      `The secret word is ${comWordChoice}. `;
     scoreGlobal += 1;
     roundCount += 1;
   } else {
-    message = "Sorry. You guess wrongly. ";
+    message =
+      "Sorry. You guess wrongly. " +
+      `Your word was ${input}. The secret word was ${comWordChoice}. `;
     roundCount += 1;
   }
   return (
@@ -34,7 +38,7 @@ var secretWordGame = function (input) {
 
 var secretWordBaseMain = function (input) {
   var gameMessageMain = "You lose.";
-  while (roundCount <= 3) {
+  while (roundCount <= 2) {
     return secretWordGame(input);
   }
   if (scoreGlobal >= 2) {
