@@ -68,7 +68,7 @@ var main = function (input) {
     "<br>" +
     `There are ${scoreDraw} draws. `
   );
-};
+};/
 
 //Reverse Mode SCP
 var reverseSCP = function () {
