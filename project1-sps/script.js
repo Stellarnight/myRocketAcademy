@@ -62,9 +62,11 @@ var main = function (input) {
   }
   return (
     outputMessage +
-    ` You, ${userName} has won ${scoreGlobalPlayer} times.\n 
-    The computer has won ${scoreGlobalCom} times.\n 
-    There are ${scoreDraw} draws.\n `
+    ` You, ${userName} has won ${scoreGlobalPlayer} times.` +
+    "<br>" +
+    `The computer has won ${scoreGlobalCom} times.` +
+    "<br>" +
+    `There are ${scoreDraw} draws. `
   );
 };
 
