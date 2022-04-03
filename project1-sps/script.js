@@ -2,6 +2,16 @@
 var scoreGlobalPlayer = 0;
 var scoreGlobalCom = 0;
 var scoreDraw = 0;
+var userName = "";
+var gameScpState = "Waiting for user name";
+
+//Helper function to define game state
+var gameStateDefiner = function (input) {
+  if (gameScpState == "Waiting for user name") {
+    userName = input;
+    gameScpState = "Start Game";
+  }
+};
 
 //helper function to generate random SCP for the "AI"
 var computerSCP = function () {
@@ -36,6 +46,7 @@ var normalSCP = function (input) {
 
 //Combined SCP Game Function
 var main = function (input) {
+  gameStateDefiner(input);
   if (!input == "scissor" || "paper" || "stone") {
     //Data validation
     var outputMessage =
@@ -51,9 +62,9 @@ var main = function (input) {
   }
   return (
     outputMessage +
-    ` You won ${scoreGlobalPlayer} times. ` +
-    `The computer has won ${scoreGlobalCom} times. ` +
-    ` There are ${scoreDraw} draws. `
+    ` You, ${userName} has won ${scoreGlobalPlayer} times.\n 
+    The computer has won ${scoreGlobalCom} times.\n 
+    There are ${scoreDraw} draws.\n `
   );
 };
 
