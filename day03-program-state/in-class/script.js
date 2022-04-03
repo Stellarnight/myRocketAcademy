@@ -1,4 +1,5 @@
 var scoreGlobal = 0; //Global Variable to keep score
+var roundCount = 0;
 
 //Computer Word Generator
 var ComWordGen = function () {
@@ -11,6 +12,24 @@ var ComWordGen = function () {
     comWord = "faucet";
   }
   return comWord;
+};
+
+var secretWordGame = function (input) {
+  var comWordChoice = ComWordGen();
+  var message = "";
+  if (comWordChoice == input) {
+    message = "Congrats! You guess correctly";
+    scoreGlobal += 1;
+    roundCount += 1;
+  } else {
+    message = "Sorry. You guess wrongly.";
+    roundCount += 1;
+  }
+  return (
+    message +
+    `You have tried ${roundCount} times ` +
+    `You have been correct ${scoreGlobal} times.`
+  );
 };
 
 var secretWordBaseMain = function (input) {
