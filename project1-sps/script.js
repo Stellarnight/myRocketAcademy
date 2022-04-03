@@ -1,3 +1,8 @@
+//global variables
+var scoreGlobalPlayer = 0;
+var scoreGlobalCom = 0;
+var scoreDraw = 0;
+
 //helper function to generate random SCP for the "AI"
 var computerSCP = function () {
   var randomFloatSCP = Math.random() * 3;
@@ -37,7 +42,19 @@ var main = function (input) {
       "Invalid input. Please key in lower case; scissor, paper or stone";
   }
   var outputMessage = normalSCP(input);
-  return outputMessage;
+  if (outputMessage == "You win!") {
+    scoreGlobalPlayer += 1;
+  } else if (outputMessage == "Draw!") {
+    scoreDraw += 1;
+  } else if (outputMessage == "You lose!") {
+    scoreGlobalCom += 1;
+  }
+  return (
+    outputMessage +
+    ` You won ${scoreGlobalPlayer} times. ` +
+    `The computer has won ${scoreGlobalCom} times. ` +
+    ` There are ${scoreDraw} draws. `
+  );
 };
 
 //Reverse Mode SCP
