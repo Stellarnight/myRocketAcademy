@@ -57,7 +57,7 @@ var main = function (input) {
   );
 };
 
-//Reverse Mode SCP
+//Reverse Mode SCP - IGNORE THIS FOR NOW. NOT COMPLETED
 var reverseSCP = function () {
   var comSCPOutput = computerSCP();
   var playerSCP = input;
