@@ -1,5 +1,5 @@
 var mode = "Player1Roll"; //default start mode
-var p1Dice1 = "A";
+var p1Dice1 = "A"; //if for some reason, the end results output these letters, it tells me that the code isnt doing what i want
 var p1Dice2 = "B";
 var p2Dice1 = "C";
 var p2Dice2 = "D";
@@ -8,11 +8,17 @@ var p1CombinedScore = "E";
 var p2CombinedScoreArray = [];
 var p2CombinedScore = "F";
 
+//Scoreboard
+var p1Win = 0;
+var p2Win = 0;
+var totalGames = 0;
+
 //dice roller function
 var rollDice = function () {
   return Math.ceil(Math.random() * 6);
 };
 
+//Main Function
 var main = function (input) {
   if (mode === "Player1Roll") {
     p1Dice1 = rollDice();
@@ -86,11 +92,18 @@ var main = function (input) {
     var outputMessage = "Draw!";
     if (p1CombinedScore > p2CombinedScore) {
       outputMessage = "Player 1 wins!";
+      p1Win += 1;
+      totalGames += 1;
       return outputMessage;
     } else if (p1CombinedScore < p2CombinedScore) {
-      outputMessage = "Player 2 wins!";
+      p2Win += 1;
+      totalGames += 1;
+      outputMessage = `Player 2 wins! <br> Total Games Played: ${totalGames}.  
+      <br> Player 1 Win: ${p1Win} <br> 
+      Player 2 Win: ${p2Win}`;
       return outputMessage;
     }
+    totalGames += 1;
     return outputMessage;
   }
 };

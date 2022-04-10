@@ -7,6 +7,12 @@ The <html> element is known as the root element of a HTML page. All other elemen
 <html>
   <!-- The <head> element contains meta information about the HTML page, information that is not rendered or displayed by the browser -->
   <head>
+    <style>
+      p {
+        color: darkblue;
+        font-weight: bold;
+      }
+    </style>
     <!-- The meta tag defines meta information in the HTML document. In this case, we are defining the charset. UTF-8 allows us to use emojis in the CodeSandbox environment -->
     <meta charset="UTF-8" />
     <!-- The <title> element specifies a title for the HTML page (which is shown in the browser's title bar or in the page's tab) and is the default name given to a bookmark of a webpage. -->
@@ -64,7 +70,14 @@ The <html> element is known as the root element of a HTML page. All other elemen
     <!-- The <div> tag defines a division or a section in an HTML document, and is commonly use as a "container" for nested HTML elements. -->
     <div class="container">
       <!-- The <p> tag defines a paragraph element. -->
-      <p>Input:</p>
+      <p style="color: crimson;">
+        Input (Please press Submit to generate Player 1 Roll):<br />
+        <i style="color: black;">
+          This game works first by rolling two dices for each player
+          sequentially. After which, the player will from a two digit number
+          from both dices. The player with the bigger two digit number wins!</i
+        >
+      </p>
       <!-- The self-closing <input /> tag represents a field for a user to enter input. -->
       <input id="input-field" />
       <!-- The self-closing <br /> tag represents a line break - a line's worth of spacing before dispalying the next element. -->
