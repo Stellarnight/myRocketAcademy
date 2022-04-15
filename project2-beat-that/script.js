@@ -48,7 +48,7 @@ var rollXDices = function (input) {
     }
     playerDiceNumber[player] = tempCombinedDiceNumber;
     mode = `Roll Dices`;
-    else if (!player == totalPlayers) {
+    if (!player == totalPlayers) {
       msg = `Player ${player}. You have chosen the order of dice to be ${tempArrayforSplit}. <br>
       Your number is ${playerDiceNumber[player]} <br>
       It is now Player ${player + 1}'s turn. Press submit to roll dices.`;
@@ -57,22 +57,22 @@ var rollXDices = function (input) {
     }
     msg = `Player ${player}. You have chosen the order of dice to be ${tempArrayforSplit}. <br>
     Your number is ${playerDiceNumber[player]} <br>
-    All players have rolled. Press Submit to see who is the winner!`
+    All players have rolled. Press Submit to see who is the winner!`;
     return msg;
-  } 
+  }
 };
 
 //Determine Winner - adapted a useful fxn from https://stackoverflow.com/questions/11301438/return-index-of-greatest-value-in-an-array
-var determineWinner = function() {
+var determineWinner = function () {
   var max = playerDiceNumber[0]; //initialise first player dice as the highest score
   var maxIndex = 0; //to match above
-  for (var i =1; i<playerDiceNumber.length;i++){
-    if (playerDiceNumber[i]>max) {
+  for (var i = 1; i < playerDiceNumber.length; i++) {
+    if (playerDiceNumber[i] > max) {
       max = playerDiceNumber[i];
       maxIndex = i;
     }
   }
-}
+};
 
 //Main Function
 var main = function (input) {
@@ -81,7 +81,8 @@ var main = function (input) {
   }
   while (player <= totalPlayers) {
     return rollXDices(input);
-  } else if (player == totalPlayers) {
+  }
+  if (player == totalPlayers) {
     return determineWinner;
   }
 };
