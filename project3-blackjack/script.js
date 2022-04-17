@@ -10,9 +10,9 @@ var makeDeck = function () {
         rank: ``
       };
       card.suit = suits[i];
-      console.log(card.suit);
+      //console.log(card.suit);
       card.rank = j;
-      console.log(card.rank);
+      //console.log(card.rank);
       card.name = `${j}`;
       if (card.rank == 11) {
         card.name = `Jack`;
@@ -21,14 +21,16 @@ var makeDeck = function () {
       } else if (card.rank == 13) {
         card.name = `King`;
       }
-      console.log(card.name);
-      console.log(card);
+      //console.log(card.name);
+      // console.log(card);
       cardDeck.push(card);
     }
   }
-  console.log(cardDeck);
+  //console.log(cardDeck);
   return cardDeck;
 };
+
+//deck shuffle
 
 var main = function (input) {
   return makeDeck();
