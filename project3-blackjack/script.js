@@ -69,7 +69,19 @@ var outcomeBlackJack = function () {
     msg = `Player busted. Player has total ${playerScore}`;
     winRateComputer++;
     return msg;
-  } else if (21 - playerScore < 21 - comScore) {
+  } else if (playerScore == 21) {
+    msg = `Player has hit BLACKJACK. Player wins`;
+    winRatePlayer++;
+    return msg;
+  } else if (comScore == 21) {
+    msg = `Computer has hit BLACKJACK. Computer wins`;
+    winRateComputer++;
+    return msg;
+  } else if (playerScore > comScore) {
+    msg = `Player wins with score ${playerScore}. Computer has ${comScore}`;
+  } else if (playerScore > comScore) {
+    msg = `Player wins with score ${playerScore}. Computer has ${comScore}`;
+  } else if (playerScore > comScore) {
     msg = `Player wins with score ${playerScore}. Computer has ${comScore}`;
   }
 };
