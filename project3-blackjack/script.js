@@ -61,12 +61,17 @@ var shuffleCards = function (cardDeck) {
 var outcomeBlackJack = function () {
   if (comScore > 21) {
     msg = `Computer busted. Computer has total ${comScore}`;
-    return msg;
-  } else if (playerScore > 21) {
-    msg = `Player busted. Player has total ${playerScore}`;
+    winRatePlayer++;
     return msg;
   }
-  var allPlayerScores = [];
+  //to come back and include a for function to accomodate multiple players***
+  else if (playerScore > 21) {
+    msg = `Player busted. Player has total ${playerScore}`;
+    winRateComputer++;
+    return msg;
+  } else if (21 - playerScore < 21 - comScore) {
+    msg = `Player wins with score ${playerScore}. Computer has ${comScore}`;
+  }
 };
 
 // Shuffle the deck and save it in a new variable shuffledDeck
