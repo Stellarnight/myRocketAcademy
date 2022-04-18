@@ -63,6 +63,8 @@ var winRateComputer = 0;
 var winRatePlayer = 0;
 var drawRate = 0;
 
+//Check for bus
+
 //Determine winning or losing
 var outcomeBlackJack = function () {
   handsComputer = [];

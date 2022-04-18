@@ -80,6 +80,22 @@ button {
   padding: 0 6px;
 }
 
+#hit-button {
+  font-size: 21px;
+  line-height: 33px;
+  margin: 0 0 23px 0;
+  padding: 0 6px;
+  background-color: limegreen;
+}
+
+#stand-button {
+  font-size: 21px;
+  line-height: 33px;
+  margin: 0 0 23px 0;
+  padding: 0 6px;
+  background-color: lightpink;
+}
+
 .output-div {
   background-color: lightgrey;
   margin: 20px auto;

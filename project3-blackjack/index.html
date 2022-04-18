@@ -64,13 +64,26 @@ The <html> element is known as the root element of a HTML page. All other elemen
     <!-- The <div> tag defines a division or a section in an HTML document, and is commonly use as a "container" for nested HTML elements. -->
     <div class="container">
       <!-- The <p> tag defines a paragraph element. -->
-      <p>Input:</p>
+      <p>
+        In this game, the player will play against the dealer (the computer) in
+        a game of blackjack. <br />
+        The point of the game is to get a score as close to if not equal to 21
+        from combining the values of the cards in your hand, without going over
+        21 which is an automatic loss a.k.a a bust<br />
+        The rules of Blackjack is simple:<br />
+        (1) Both the player and the dealer are issued with two cards
+        respectively from a shuffled deck.
+      </p>
       <!-- The self-closing <input /> tag represents a field for a user to enter input. -->
       <input id="input-field" />
       <!-- The self-closing <br /> tag represents a line break - a line's worth of spacing before dispalying the next element. -->
       <br />
       <!-- The <button> tag represents.. you guessed it! a button. -->
-      <button id="submit-button">Submit</button>
+      <button id="submit-button">Press to start Blackjack!</button>
+      <p>
+        <button id="hit-button">Press to Hit</button>
+        <button id="stand-button">Press to Stand</button>
+      </p>
       <p>Output:</p>
       <div class="output-div" id="output-div"></div>
     </div>
