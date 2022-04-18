@@ -78,9 +78,16 @@ var outcomeBlackJack = function () {
     return msg;
   }
   //to come back and include a for function to accomodate multiple players***
-  else if (playerScore > 21) {
+  else if (playerScore > 21 && comScore <= 21) {
     winRateComputer++;
     msg = `Player busted. Player has total ${playerScore} <br> 
+    Current Player Win: ${winRatePlayer} <br> 
+    Current Computer Win: ${winRateComputer} <br> 
+    Current Draws: ${drawRate}`;
+    return msg;
+  } else if (playerScore == comScore) {
+    drawRate++;
+    msg = `Draw! <br> 
     Current Player Win: ${winRatePlayer} <br> 
     Current Computer Win: ${winRateComputer} <br> 
     Current Draws: ${drawRate}`;
@@ -109,13 +116,6 @@ var outcomeBlackJack = function () {
   } else if (playerScore < comScore) {
     winRateComputer++;
     msg = `Computer wins with score ${comScore}. Player has ${playerScore}<br> 
-    Current Player Win: ${winRatePlayer} <br> 
-    Current Computer Win: ${winRateComputer} <br> 
-    Current Draws: ${drawRate}`;
-    return msg;
-  } else if (playerScore == comScore) {
-    drawRate++;
-    msg = `Draw! <br> 
     Current Player Win: ${winRatePlayer} <br> 
     Current Computer Win: ${winRateComputer} <br> 
     Current Draws: ${drawRate}`;
