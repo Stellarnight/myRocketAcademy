@@ -68,34 +68,55 @@ var outcomeBlackJack = function () {
   handsComputer = [];
   handsPlayer = [];
   if (comScore > 21) {
-    msg = `Computer busted. Computer has total ${comScore}`;
     winRatePlayer++;
+    msg = `Computer busted. Computer has total ${comScore} <br> 
+    Current Player Win: ${winRatePlayer} <br> 
+    Current Computer Win: ${winRateComputer} <br> 
+    Current Draws: ${drawRate}`;
     return msg;
   }
   //to come back and include a for function to accomodate multiple players***
   else if (playerScore > 21) {
-    msg = `Player busted. Player has total ${playerScore}`;
     winRateComputer++;
+    msg = `Player busted. Player has total ${playerScore} <br> 
+    Current Player Win: ${winRatePlayer} <br> 
+    Current Computer Win: ${winRateComputer} <br> 
+    Current Draws: ${drawRate}`;
     return msg;
   } else if (playerScore == 21) {
-    msg = `Player has hit BLACKJACK. Player wins`;
     winRatePlayer++;
+    msg = `Player has hit BLACKJACK. Player wins <br> 
+    Current Player Win: ${winRatePlayer} <br> 
+    Current Computer Win: ${winRateComputer} <br> 
+    Current Draws: ${drawRate}`;
     return msg;
   } else if (comScore == 21) {
-    msg = `Computer has hit BLACKJACK. Computer wins`;
     winRateComputer++;
+    msg = `Computer has hit BLACKJACK. Computer wins<br> 
+    Current Player Win: ${winRatePlayer} <br> 
+    Current Computer Win: ${winRateComputer} <br> 
+    Current Draws: ${drawRate}`;
     return msg;
   } else if (playerScore > comScore) {
-    msg = `Player wins with score ${playerScore}. Computer has ${comScore}`;
     winRatePlayer++;
+    msg = `Player wins with score ${playerScore}. Computer has ${comScore} <br> 
+    Current Player Win: ${winRatePlayer} <br> 
+    Current Computer Win: ${winRateComputer} <br> 
+    Current Draws: ${drawRate}`;
     return msg;
   } else if (playerScore < comScore) {
-    msg = `Computer wins with score ${comScore}. Player has ${playerScore}`;
     winRateComputer++;
+    msg = `Computer wins with score ${comScore}. Player has ${playerScore}<br> 
+    Current Player Win: ${winRatePlayer} <br> 
+    Current Computer Win: ${winRateComputer} <br> 
+    Current Draws: ${drawRate}`;
     return msg;
   } else if (playerScore == comScore) {
-    msg = `Draw!`;
     drawRate++;
+    msg = `Draw! <br> 
+    Current Player Win: ${winRatePlayer} <br> 
+    Current Computer Win: ${winRateComputer} <br> 
+    Current Draws: ${drawRate}`;
     return msg;
   }
 };
@@ -106,6 +127,8 @@ var shuffledDeck = shuffleCards(makeDeck());
 // Define arrays to capture the cards for both players
 var handsComputer = [];
 var handsPlayer = [];
+
+//HERE IS THE MAIN CODE FOR GAME
 
 var main = function (input) {
   //issue two cards in sequence to both players and comptuers
