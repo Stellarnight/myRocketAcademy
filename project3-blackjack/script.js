@@ -1,4 +1,5 @@
-//Function to create a deck of 52 cards
+//PSEUDO CODE
+// Step 1: Create Deck
 var makeDeck = function () {
   var suits = ["hearts", "diamonds", "clubs", "spades"];
   var cardDeck = [];
@@ -30,7 +31,7 @@ var makeDeck = function () {
   return cardDeck;
 };
 
-//deck shuffle
+//Step 2: Shuffle Deck
 // Get a random index ranging from 0 (inclusive) to max (exclusive).
 var getRandomIndex = function (max) {
   return Math.floor(Math.random() * max);
@@ -57,96 +58,102 @@ var shuffleCards = function (cardDeck) {
   return cardDeck;
 };
 
-var comScore = 0;
-var playerScore = 0;
+var shuffledDeck = shuffleCards(makeDeck());
+
+//Step 3: Start Blackjack game between Dealer and Player
+//Global Variables here
+var comScore = 0; //to capture the combined rank of all the cards of the computer
+var playerScore = 0; //to capture the combined rank of all the cards of the player
 var winRateComputer = 0;
 var winRatePlayer = 0;
 var drawRate = 0;
+var handsComputer = []; //array to capture the individual cards of the computer
+var handsPlayer = []; //array to capture the individual cards of the player
 
-//Check for bus
-
-//Determine winning or losing
-var outcomeBlackJack = function () {
-  handsComputer = [];
-  handsPlayer = [];
-  if (comScore > 21) {
-    winRatePlayer++;
-    msg = `Computer busted. Computer has total ${comScore} <br> 
-    Current Player Win: ${winRatePlayer} <br> 
-    Current Computer Win: ${winRateComputer} <br> 
-    Current Draws: ${drawRate}`;
-    return msg;
+//variable to generate scalable output of cards by suit and name
+var helpfulFunctionPlayer = function () {
+  var outputPlayer = ``;
+  for (i = 0; i < handsPlayer.length; i++) {
+    outputPlayer += `, ${handsPlayer[i].name} of ${handsPlayer[i].suit}`;
   }
-  //to come back and include a for function to accomodate multiple players***
-  else if (playerScore > 21 && comScore <= 21) {
-    winRateComputer++;
-    msg = `Player busted. Player has total ${playerScore} <br> 
-    Current Player Win: ${winRatePlayer} <br> 
-    Current Computer Win: ${winRateComputer} <br> 
-    Current Draws: ${drawRate}`;
-    return msg;
-  } else if (playerScore == comScore) {
+  return outputPlayer;
+};
+var helpfulFunctionComputer = function () {
+  for (i = 0; i < handsComputer.length; i++) {
+    var outputComputer = `${handsComputer[i].name} of ${handsComputer[i].suit}`;
+    return outputComputer;
+  }
+};
+
+//determine winner function
+var outcomeBlackJack = function () {
+  if ((comScore > 21 && playerScore > 21) || comScore == playerScore) {
     drawRate++;
-    msg = `Draw! <br> 
+    msg =
+      `Draw! <br>
+    Player's hand was ` +
+      helpfulFunctionPlayer() +
+      `. <br>
+    Computer's hand was ${handsComputer.name} of ${handsComputer.suit}. <br> 
     Current Player Win: ${winRatePlayer} <br> 
     Current Computer Win: ${winRateComputer} <br> 
     Current Draws: ${drawRate}`;
+    console.log(handsPlayer);
     return msg;
-  } else if (playerScore == 21) {
+  } else if (comScore > playerScore) {
     winRatePlayer++;
-    msg = `Player has hit BLACKJACK. Player wins <br> 
+    msg =
+      `Player wins with score ${playerScore}. Computer had ${comScore} <br> 
+    Player's hand was ` +
+      helpfulFunctionPlayer() +
+      `. <br>
+    Computer's hand was ${handsComputer.name} of ${handsComputer.suit}. <br>
     Current Player Win: ${winRatePlayer} <br> 
     Current Computer Win: ${winRateComputer} <br> 
     Current Draws: ${drawRate}`;
+    console.log(handsPlayer);
     return msg;
-  } else if (comScore == 21) {
+  } else if (comScore < playerScore) {
     winRateComputer++;
-    msg = `Computer has hit BLACKJACK. Computer wins<br> 
+    msg =
+      `Computer wins with score ${comScore}. Player had ${playerScore} <br> 
+    Player's hand was ` +
+      helpfulFunctionPlayer() +
+      `. <br>
+    Computer's hand was ${handsComputer.name} of ${handsComputer.suit}. <br>
     Current Player Win: ${winRatePlayer} <br> 
     Current Computer Win: ${winRateComputer} <br> 
     Current Draws: ${drawRate}`;
-    return msg;
-  } else if (playerScore > comScore) {
-    winRatePlayer++;
-    msg = `Player wins with score ${playerScore}. Computer has ${comScore} <br> 
-    Current Player Win: ${winRatePlayer} <br> 
-    Current Computer Win: ${winRateComputer} <br> 
-    Current Draws: ${drawRate}`;
-    return msg;
-  } else if (playerScore < comScore) {
-    winRateComputer++;
-    msg = `Computer wins with score ${comScore}. Player has ${playerScore}<br> 
-    Current Player Win: ${winRatePlayer} <br> 
-    Current Computer Win: ${winRateComputer} <br> 
-    Current Draws: ${drawRate}`;
+    console.log(handsPlayer);
     return msg;
   }
 };
 
-// Shuffle the deck and save it in a new variable shuffledDeck
-// to communicate that we have shuffled the deck.
-var shuffledDeck = shuffleCards(makeDeck());
-// Define arrays to capture the cards for both players
-var handsComputer = [];
-var handsPlayer = [];
-
-//HERE IS THE MAIN CODE FOR GAME
-
+//Main Game here
 var main = function (input) {
-  //issue two cards in sequence to both players and comptuers
+  //resets both player and computer score back to 0 at the start of each game
   comScore = 0;
   playerScore = 0;
+  //Step 4: Deal two cards each to Player and Dealer
+  //issue two cards in sequence to both player and computer
   for (i = 0; i < 2; i++) {
     handsComputer.push(shuffledDeck.pop());
     handsPlayer.push(shuffledDeck.pop());
   }
-  //score comparision time - Basic level no ability for both players to draw
+  //generate combined score of all the cards in the computer's hand
   for (i = 0; i < handsComputer.length; i++) {
     comScore += handsComputer[i].rank;
   }
-  //reset the hands
+  //generate combined score of all the cards in the player's hand
   for (i = 0; i < handsPlayer.length; i++) {
     playerScore += handsPlayer[i].rank;
   }
   return outcomeBlackJack();
 };
+
+//Step 5: Check for instant blackjack and determine winner or draw
+//Step 6: Check if player needs or wants to hit; if need to hit, issue 1 x card
+//Step 7: Check if dealer needs or wants to hit; if need to hit, issue 1 x card
+//step 8: check if anybody busts at this stage
+//step 9: repeat step 6 to 8 if required
+//Step 10: comapre score and output message
