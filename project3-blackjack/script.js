@@ -57,8 +57,16 @@ var shuffleCards = function (cardDeck) {
   return cardDeck;
 };
 
+var comScore = 0;
+var playerScore = 0;
+var winRateComputer = 0;
+var winRatePlayer = 0;
+var drawRate = 0;
+
 //Determine winning or losing
 var outcomeBlackJack = function () {
+  handsComputer = [];
+  handsPlayer = [];
   if (comScore > 21) {
     msg = `Computer busted. Computer has total ${comScore}`;
     winRatePlayer++;
@@ -79,27 +87,30 @@ var outcomeBlackJack = function () {
     return msg;
   } else if (playerScore > comScore) {
     msg = `Player wins with score ${playerScore}. Computer has ${comScore}`;
-  } else if (playerScore > comScore) {
-    msg = `Player wins with score ${playerScore}. Computer has ${comScore}`;
-  } else if (playerScore > comScore) {
-    msg = `Player wins with score ${playerScore}. Computer has ${comScore}`;
+    winRatePlayer++;
+    return msg;
+  } else if (playerScore < comScore) {
+    msg = `Computer wins with score ${comScore}. Player has ${playerScore}`;
+    winRateComputer++;
+    return msg;
+  } else if (playerScore == comScore) {
+    msg = `Draw!`;
+    drawRate++;
+    return msg;
   }
 };
 
 // Shuffle the deck and save it in a new variable shuffledDeck
 // to communicate that we have shuffled the deck.
 var shuffledDeck = shuffleCards(makeDeck());
-
-var winRateComputer = 0;
-var winRatePlayer = 0;
+// Define arrays to capture the cards for both players
+var handsComputer = [];
+var handsPlayer = [];
 
 var main = function (input) {
-  // Define arrays to capture the cards for both players
-  var handsComputer = [];
-  var handsPlayer = [];
-  var comScore = 0;
-  var playerScore = 0;
   //issue two cards in sequence to both players and comptuers
+  comScore = 0;
+  playerScore = 0;
   for (i = 0; i < 2; i++) {
     handsComputer.push(shuffledDeck.pop());
     handsPlayer.push(shuffledDeck.pop());
@@ -108,9 +119,9 @@ var main = function (input) {
   for (i = 0; i < handsComputer.length; i++) {
     comScore += handsComputer[i].rank;
   }
+  //reset the hands
   for (i = 0; i < handsPlayer.length; i++) {
     playerScore += handsPlayer[i].rank;
   }
-  var msg = `Com Score is ${comScore}. <br> Player Score is ${playerScore}.`;
-  return msg;
+  return outcomeBlackJack();
 };
