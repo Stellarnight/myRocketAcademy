@@ -33,7 +33,6 @@ var makeDeck = function () {
   //console.log(cardDeck);
   return cardDeck;
 };
-var deckCards = makeDeck();
 
 //Step 2: Shuffle Deck
 // Get a random index ranging from 0 (inclusive) to max (exclusive).
@@ -61,8 +60,6 @@ var shuffleCards = function (cardDeck) {
   // Return the shuffled deck
   return cardDeck;
 };
-
-var shuffledDeck = shuffleCards(deckCards);
 
 //Step 3: Start Blackjack game between Dealer and Player
 //Global Variables here
@@ -150,6 +147,7 @@ var outcomeBlackJack = function () {
 //Main Game here
 var main = function (input) {
   var outputMsg = ``;
+  var shuffledDeck = shuffleCards(makeDeck()); //Starts with a freshly shuffled deck every time
   //resets both player and computer score back to 0 at the start of each game
   comScore = 0;
   playerScore = 0;
