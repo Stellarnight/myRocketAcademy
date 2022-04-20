@@ -74,6 +74,7 @@ var outputComputer = ``;
 
 //variable to generate scalable output of cards by suit and name for use in the OutputMessage
 var helpfulFunctionPlayer = function () {
+  outputPlayer = ``;
   for (i = 0; i < handsPlayer.length; i++) {
     outputPlayer += `, ${handsPlayer[i].name} of ${handsPlayer[i].suit}`;
   }
@@ -139,6 +140,8 @@ var main = function (input) {
   //resets both player and computer score back to 0 at the start of each game
   comScore = 0;
   playerScore = 0;
+  handsComputer = [];
+  handsPlayer = [];
   //Step 4: Deal two cards each to Player and Dealer
   //issue two cards in sequence to both player and computer
   for (i = 0; i < 2; i++) {
@@ -154,8 +157,6 @@ var main = function (input) {
     playerScore += handsPlayer[i].rank;
   }
   outputMsg = outcomeBlackJack();
-  outputPlayer = ``;
-  outputComputer = ``;
   return outputMsg;
 };
 
