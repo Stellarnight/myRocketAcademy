@@ -127,7 +127,7 @@ var outcomeBlackJack = function () {
     Current Player Win: ${winRatePlayer} <br> 
     Current Computer Win: ${winRateComputer} <br> 
     Current Draws: ${drawRate}`;
-    console.log(handsPlayer);
+    //console.log(handsPlayer);
     return msg;
   }
 };
