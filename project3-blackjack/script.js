@@ -70,7 +70,7 @@ var drawRate = 0;
 var handsComputer = []; //array to capture the individual cards of the computer
 var handsPlayer = []; //array to capture the individual cards of the player
 
-//variable to generate scalable output of cards by suit and name
+//variable to generate scalable output of cards by suit and name for use in the OutputMessage
 var helpfulFunctionPlayer = function () {
   var outputPlayer = ``;
   for (i = 0; i < handsPlayer.length; i++) {
@@ -79,10 +79,11 @@ var helpfulFunctionPlayer = function () {
   return outputPlayer;
 };
 var helpfulFunctionComputer = function () {
+  var outputComputer = ``;
   for (i = 0; i < handsComputer.length; i++) {
-    var outputComputer = `${handsComputer[i].name} of ${handsComputer[i].suit}`;
-    return outputComputer;
+    outputComputer += `, ${handsComputer[i].name} of ${handsComputer[i].suit}`;
   }
+  return outputComputer;
 };
 
 //determine winner function
@@ -94,11 +95,12 @@ var outcomeBlackJack = function () {
     Player's hand was ` +
       helpfulFunctionPlayer() +
       `. <br>
-    Computer's hand was ${handsComputer.name} of ${handsComputer.suit}. <br> 
+    Computer's hand was` +
+      helpfulFunctionComputer() +
+      `. <br> 
     Current Player Win: ${winRatePlayer} <br> 
     Current Computer Win: ${winRateComputer} <br> 
     Current Draws: ${drawRate}`;
-    console.log(handsPlayer);
     return msg;
   } else if (comScore > playerScore) {
     winRatePlayer++;
@@ -107,11 +109,12 @@ var outcomeBlackJack = function () {
     Player's hand was ` +
       helpfulFunctionPlayer() +
       `. <br>
-    Computer's hand was ${handsComputer.name} of ${handsComputer.suit}. <br>
+    Computer's hand was` +
+      helpfulFunctionComputer() +
+      `. <br>
     Current Player Win: ${winRatePlayer} <br> 
     Current Computer Win: ${winRateComputer} <br> 
     Current Draws: ${drawRate}`;
-    console.log(handsPlayer);
     return msg;
   } else if (comScore < playerScore) {
     winRateComputer++;
