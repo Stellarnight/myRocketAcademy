@@ -10,6 +10,7 @@ var makeDeck = function () {
         suit: ``,
         rank: ``
       };
+
       card.suit = suits[i];
       //console.log(card.suit);
       card.rank = j;
@@ -26,7 +27,6 @@ var makeDeck = function () {
         card.rank = 10;
       }
       //console.log(card.name);
-      // console.log(card);
       cardDeck.push(card);
     }
   }
@@ -166,6 +166,8 @@ var main = function (input) {
   //generate combined score of all the cards in the computer's hand
   for (i = 0; i < handsComputer.length; i++) {
     comScore += handsComputer[i].rank;
+    console.log(`rank = ` + handsComputer[i].rank);
+    console.log(`score = ` + comScore);
   }
   //generate combined score of all the cards in the player's hand
   for (i = 0; i < handsPlayer.length; i++) {
