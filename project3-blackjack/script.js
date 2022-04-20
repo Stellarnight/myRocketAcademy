@@ -123,7 +123,9 @@ var outcomeBlackJack = function () {
     Player's hand was ` +
       helpfulFunctionPlayer() +
       `. <br>
-    Computer's hand was ${handsComputer.name} of ${handsComputer.suit}. <br>
+    Computer's hand was` +
+      helpfulFunctionComputer() +
+      `. <br>
     Current Player Win: ${winRatePlayer} <br> 
     Current Computer Win: ${winRateComputer} <br> 
     Current Draws: ${drawRate}`;
