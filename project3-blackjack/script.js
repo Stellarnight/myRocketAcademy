@@ -69,17 +69,17 @@ var winRatePlayer = 0;
 var drawRate = 0;
 var handsComputer = []; //array to capture the individual cards of the computer
 var handsPlayer = []; //array to capture the individual cards of the player
+var outputPlayer = ``;
+var outputComputer = ``;
 
 //variable to generate scalable output of cards by suit and name for use in the OutputMessage
 var helpfulFunctionPlayer = function () {
-  var outputPlayer = ``;
   for (i = 0; i < handsPlayer.length; i++) {
     outputPlayer += `, ${handsPlayer[i].name} of ${handsPlayer[i].suit}`;
   }
   return outputPlayer;
 };
 var helpfulFunctionComputer = function () {
-  var outputComputer = ``;
   for (i = 0; i < handsComputer.length; i++) {
     outputComputer += `, ${handsComputer[i].name} of ${handsComputer[i].suit}`;
   }
@@ -101,7 +101,7 @@ var outcomeBlackJack = function () {
     Current Player Win: ${winRatePlayer} <br> 
     Current Computer Win: ${winRateComputer} <br> 
     Current Draws: ${drawRate}`;
-    return msg;
+    //return msg;
   } else if (comScore > playerScore) {
     winRatePlayer++;
     msg =
@@ -115,7 +115,7 @@ var outcomeBlackJack = function () {
     Current Player Win: ${winRatePlayer} <br> 
     Current Computer Win: ${winRateComputer} <br> 
     Current Draws: ${drawRate}`;
-    return msg;
+    //return msg;
   } else if (comScore < playerScore) {
     winRateComputer++;
     msg =
@@ -128,12 +128,14 @@ var outcomeBlackJack = function () {
     Current Computer Win: ${winRateComputer} <br> 
     Current Draws: ${drawRate}`;
     //console.log(handsPlayer);
-    return msg;
+    ///return msg;
   }
+  return msg;
 };
 
 //Main Game here
 var main = function (input) {
+  var outputMsg = ``;
   //resets both player and computer score back to 0 at the start of each game
   comScore = 0;
   playerScore = 0;
@@ -151,7 +153,10 @@ var main = function (input) {
   for (i = 0; i < handsPlayer.length; i++) {
     playerScore += handsPlayer[i].rank;
   }
-  return outcomeBlackJack();
+  outputMsg = outcomeBlackJack();
+  outputPlayer = ``;
+  outputComputer = ``;
+  return outputMsg;
 };
 
 //Step 5: Check for instant blackjack and determine winner or draw
