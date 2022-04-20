@@ -17,10 +17,13 @@ var makeDeck = function () {
       card.name = `${j}`;
       if (card.rank == 11) {
         card.name = `Jack`;
+        card.rank = 10;
       } else if (card.rank == 12) {
         card.name = `Queen`;
+        card.rank = 10;
       } else if (card.rank == 13) {
         card.name = `King`;
+        card.rank = 10;
       }
       //console.log(card.name);
       // console.log(card);
