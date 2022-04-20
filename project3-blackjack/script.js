@@ -102,7 +102,7 @@ var outcomeBlackJack = function () {
     Current Computer Win: ${winRateComputer} <br> 
     Current Draws: ${drawRate}`;
     //return msg;
-  } else if (playerScore > comScore) {
+  } else if (playerScore > comScore || comScore > 21) {
     winRatePlayer++;
     msg =
       `Player wins with score ${playerScore}. Computer had ${comScore} <br> 
@@ -116,7 +116,7 @@ var outcomeBlackJack = function () {
     Current Computer Win: ${winRateComputer} <br> 
     Current Draws: ${drawRate}`;
     //return msg;
-  } else if (comScore > playerScore) {
+  } else if (comScore > playerScore || playerScore > 21) {
     winRateComputer++;
     msg =
       `Computer wins with score ${comScore}. Player had ${playerScore} <br> 
