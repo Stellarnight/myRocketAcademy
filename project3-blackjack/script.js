@@ -33,6 +33,7 @@ var makeDeck = function () {
   //console.log(cardDeck);
   return cardDeck;
 };
+var deckCards = makeDeck();
 
 //Step 2: Shuffle Deck
 // Get a random index ranging from 0 (inclusive) to max (exclusive).
@@ -61,7 +62,7 @@ var shuffleCards = function (cardDeck) {
   return cardDeck;
 };
 
-var shuffledDeck = shuffleCards(makeDeck());
+var shuffledDeck = shuffleCards(deckCards);
 
 //Step 3: Start Blackjack game between Dealer and Player
 //Global Variables here
@@ -105,7 +106,11 @@ var outcomeBlackJack = function () {
     Current Computer Win: ${winRateComputer} <br> 
     Current Draws: ${drawRate}`;
     //return msg;
-  } else if (playerScore > comScore || comScore > 21) {
+  } else if (
+    playerScore > comScore ||
+    comScore > 21 ||
+    (playerScore == 21 && !comScore == 21)
+  ) {
     winRatePlayer++;
     msg =
       `Player wins with score ${playerScore}. Computer had ${comScore} <br> 
@@ -119,7 +124,11 @@ var outcomeBlackJack = function () {
     Current Computer Win: ${winRateComputer} <br> 
     Current Draws: ${drawRate}`;
     //return msg;
-  } else if (comScore > playerScore || playerScore > 21) {
+  } else if (
+    comScore > playerScore ||
+    playerScore > 21 ||
+    (!playerScore == 21 && comScore == 21)
+  ) {
     winRateComputer++;
     msg =
       `Computer wins with score ${comScore}. Player had ${playerScore} <br> 
