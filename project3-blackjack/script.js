@@ -72,6 +72,8 @@ var handsComputer = []; //array to capture the individual cards of the computer
 var handsPlayer = []; //array to capture the individual cards of the player
 var outputPlayer = ``;
 var outputComputer = ``;
+var gameMode = `Deal2Cards`;
+var shuffledDeck = shuffleCards(makeDeck());
 
 //variable to generate scalable output of cards by suit and name for use in the OutputMessage
 var helpfulFunctionPlayer = function () {
@@ -144,19 +146,8 @@ var outcomeBlackJack = function () {
   return msg;
 };
 
-//Main Game here
-var main = function (input) {
-  var outputMsg = ``;
-  var shuffledDeck = shuffleCards(makeDeck()); //Starts with a freshly shuffled deck every time
-  //resets both player and computer score back to 0 at the start of each game
-  comScore = 0;
-  playerScore = 0;
-  handsComputer = [];
-  handsPlayer = [];
-  outputPlayer = ``;
-  outputComputer = ``;
-  //Step 4: Deal two cards each to Player and Dealer
-  //issue two cards in sequence to both player and computer
+//Initial Two Card Deal Mode
+var dealTwoCards = function () {
   for (i = 0; i < 2; i++) {
     handsComputer.push(shuffledDeck.pop());
     handsPlayer.push(shuffledDeck.pop());
@@ -171,6 +162,25 @@ var main = function (input) {
   for (i = 0; i < handsPlayer.length; i++) {
     playerScore += handsPlayer[i].rank;
   }
+};
+
+//Main Game here
+var main = function (input) {
+  var outputMsg = ``;
+  shuffledDeck = shuffleCards(makeDeck()); //Starts with a freshly shuffled deck every time
+  //resets both player and computer score back to 0 at the start of each game
+  comScore = 0;
+  playerScore = 0;
+  handsComputer = [];
+  handsPlayer = [];
+  outputPlayer = ``;
+  outputComputer = ``;
+  //Step 4: Deal two cards each to Player and Dealer
+  //issue two cards in sequence to both player and computer
+  if (gameMode == `Deal2Cards`) {
+    dealTwoCards();
+  }
+
   outputMsg = outcomeBlackJack();
   return outputMsg;
 };
