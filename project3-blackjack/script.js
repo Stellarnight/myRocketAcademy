@@ -228,12 +228,19 @@ var main = function (input) {
     outputComputer = ``;
     dealTwoCards();
     outputMsg = checkForBlackjack();
-    //console.log(outputMsg);
     if (outputMsg != ``) {
       return outputMsg;
     }
-    //gameMode = `HitOrStand`;
-    //outputMsg = `You drew` + helpfulFunctionPlayer() +` .Your total score is ${playerScore}. Hit or Stand?`;
+    gameMode = `HitOrStand`;
+    outputMsg =
+      `You drew` +
+      helpfulFunctionPlayer() +
+      ` .Your total score is ${playerScore}. Hit or Stand?`;
+    const createHitButton = document.createElement("#hit-button");
+    const innerTextHitButton = createHitButton.innerHTML("Hit!");
+    const parentHitButton = document.getElementById("#submit-button");
+    parentHitButton.appendChild(createHitButton);
+
     //shuffledDeckV2 = shuffledDeck; //preserve the shuffled deck because once line 241 is triggered, the deck would get refreshed
     //return outputMsg;
   } else if (gameMode == `HitOrStand`) {
@@ -253,16 +260,16 @@ var main = function (input) {
   return outputMsg;
 };
 
-const hitButton = document.querySelector("#hit-button");
-console.log(hitButton);
-hitButton.addEventListener("click", () => {
-  // Store the output of main() in a new variable
-  var result = main("Hit"); // "hit!"
+//const hitButton = document.querySelector("#hit-button");
+//console.log(hitButton);
+//hitButton.addEventListener("click", () => {
+// Store the output of main() in a new variable
+//var result = main("Hit"); // "hit!"
 
-  // Display result in output element
-  var output = document.querySelector("#output-div");
-  output.innerHTML = result;
-});
+// Display result in output element
+//var output = document.querySelector("#output-div");
+//output.innerHTML = result;
+//});
 
 //Step 5: Check for instant blackjack and determine winner or draw
 //Step 6: Check if player needs or wants to hit; if need to hit, issue 1 x card
