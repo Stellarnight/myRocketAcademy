@@ -93,7 +93,8 @@ var helpfulFunctionComputer = function () {
 
 //Helper Function for Initial (first two cards) Win Condition
 var checkForBlackjack = function () {
-  if (comScore == 21 && !playerScore == 21) {
+  var msg = ``;
+  if (comScore == 21 && playerScore != 21) {
     winRateComputer++;
     msg =
       `BLACKJACK! Computer wins with score ${comScore}. Player had ${playerScore} <br> 
@@ -106,7 +107,7 @@ var checkForBlackjack = function () {
     Current Player Win: ${winRatePlayer} <br> 
     Current Computer Win: ${winRateComputer} <br> 
     Current Draws: ${drawRate}`;
-  } else if (!comScore == 21 && playerScore == 21) {
+  } else if (comScore != 21 && playerScore == 21) {
     winRatePlayer++;
     msg =
       `BLACKJACK! Player wins with score ${playerScore}. Computer had ${comScore} <br> 
@@ -120,6 +121,7 @@ var checkForBlackjack = function () {
     Current Computer Win: ${winRateComputer} <br> 
     Current Draws: ${drawRate}`;
   }
+  return msg;
 };
 
 //determine winner function
@@ -225,6 +227,13 @@ var main = function (input) {
   //issue two cards in sequence to both player and computer
   if (gameMode == `Deal2Cards`) {
     dealTwoCards();
+    outputMsg = checkForBlackjack();
+    console.log(outputMsg);
+    if (!outputMsg == ``) {
+      return outputMsg;
+    }
+    //gameMode = `HitOrStand`;
+    //outputMsg = `Test`;
   }
 
   outputMsg = outcomeBlackJack();
