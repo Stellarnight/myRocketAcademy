@@ -72,20 +72,20 @@ var winRatePlayer = 0;
 var drawRate = 0;
 var handsComputer = []; //array to capture the individual cards of the computer
 var handsPlayer = []; //array to capture the individual cards of the player
-var outputPlayer = ``;
-var outputComputer = ``;
 var gameMode = `Deal2Cards`;
-var shuffledDeck = shuffleCards(makeDeck());
+var shuffledDeck = [];
 
-//variable to generate scalable output of cards by suit and name for use in the OutputMessage
+//functions to generate scalable output of cards by suit and name for use in the OutputMessage
 var helpfulFunctionPlayer = function () {
-  for (i = 0; i < handsPlayer.length; i++) {
+  var outputPlayer = ``;
+  for (i = 0; i < handsPlayer.length; i += 1) {
     outputPlayer += `, ${handsPlayer[i].name} of ${handsPlayer[i].suit}`;
   }
   return outputPlayer;
 };
 var helpfulFunctionComputer = function () {
-  for (i = 0; i < handsComputer.length; i++) {
+  var outputComputer = ``;
+  for (i = 0; i < handsComputer.length; i += 1) {
     outputComputer += `, ${handsComputer[i].name} of ${handsComputer[i].suit}`;
   }
   return outputComputer;
@@ -215,37 +215,54 @@ var dealTwoCards = function () {
 //Main Game here
 var main = function (input) {
   var outputMsg = ``;
-  shuffledDeck = shuffleCards(makeDeck()); //Starts with a freshly shuffled deck every time
-  //resets both player and computer score back to 0 at the start of each game
-  comScore = 0;
-  playerScore = 0;
-  handsComputer = [];
-  handsPlayer = [];
-  outputPlayer = ``;
-  outputComputer = ``;
   //Step 4: Deal two cards each to Player and Dealer
   //issue two cards in sequence to both player and computer
   if (gameMode == `Deal2Cards`) {
+    shuffledDeck = shuffleCards(makeDeck()); //Starts with a freshly shuffled deck every time
+    //resets both player and computer score back to 0 at the start of each game
+    comScore = 0;
+    playerScore = 0;
+    handsComputer = [];
+    handsPlayer = [];
+    outputPlayer = ``;
+    outputComputer = ``;
     dealTwoCards();
     outputMsg = checkForBlackjack();
-    if (!outputMsg == ``) {
+    //console.log(outputMsg);
+    if (outputMsg != ``) {
       return outputMsg;
     }
     //gameMode = `HitOrStand`;
-    //outputMsg = "Hit or Stand?";
+    //outputMsg = `You drew` + helpfulFunctionPlayer() +` .Your total score is ${playerScore}. Hit or Stand?`;
+    //shuffledDeckV2 = shuffledDeck; //preserve the shuffled deck because once line 241 is triggered, the deck would get refreshed
     //return outputMsg;
-  } //else if (gameMode == `HitOrStand`) {
-  //if (input == `Hit`) {
-  //var i = 2;
-  //handsPlayer.push(shuffledDeck.pop());
-  // playerScore += handsPlayer[i].rank;
-  //outputMsg = `You drew ${handsPlayer[i].name} of ${handsPlayer[i].suit}. Your score is ${playerScore}`;
-  //}
-  //return outputMsg;
-  //}
+  } else if (gameMode == `HitOrStand`) {
+    if (input == `Hit`) {
+      var i = 2;
+      //handsPlayer.push(shuffledDeckV2.pop());
+      //playerScore += handsPlayer[i].rank;
+      //console.log(handsPlayer[0].rank);
+      //console.log(playerScore);
+      //outputMsg = `You drew ${handsPlayer[i].name} of ${handsPlayer[i].suit}. Your score is ${playerScore}. Do you want to hit again?`;
+      //i++;
+      //return outputMsg;
+      return "hit!";
+    }
+  }
   outputMsg = outcomeBlackJack();
   return outputMsg;
 };
+
+const hitButton = document.querySelector("#hit-button");
+console.log(hitButton);
+hitButton.addEventListener("click", () => {
+  // Store the output of main() in a new variable
+  var result = main("Hit"); // "hit!"
+
+  // Display result in output element
+  var output = document.querySelector("#output-div");
+  output.innerHTML = result;
+});
 
 //Step 5: Check for instant blackjack and determine winner or draw
 //Step 6: Check if player needs or wants to hit; if need to hit, issue 1 x card
