@@ -25,6 +25,8 @@ var makeDeck = function () {
       } else if (card.rank == 13) {
         card.name = `King`;
         card.rank = 10;
+      } else if (card.rank == 1) {
+        card.name = `Ace`;
       }
       //console.log(card.name);
       cardDeck.push(card);
@@ -87,6 +89,37 @@ var helpfulFunctionComputer = function () {
     outputComputer += `, ${handsComputer[i].name} of ${handsComputer[i].suit}`;
   }
   return outputComputer;
+};
+
+//Helper Function for Initial (first two cards) Win Condition
+var checkForBlackjack = function () {
+  if (comScore == 21 && !playerScore == 21) {
+    winRateComputer++;
+    msg =
+      `BLACKJACK! Computer wins with score ${comScore}. Player had ${playerScore} <br> 
+    Player's hand was ` +
+      helpfulFunctionPlayer() +
+      `. <br>
+    Computer's hand was` +
+      helpfulFunctionComputer() +
+      `. <br>
+    Current Player Win: ${winRatePlayer} <br> 
+    Current Computer Win: ${winRateComputer} <br> 
+    Current Draws: ${drawRate}`;
+  } else if (!comScore == 21 && playerScore == 21) {
+    winRatePlayer++;
+    msg =
+      `BLACKJACK! Player wins with score ${playerScore}. Computer had ${comScore} <br> 
+    Player's hand was ` +
+      helpfulFunctionPlayer() +
+      `. <br>
+    Computer's hand was` +
+      helpfulFunctionComputer() +
+      `. <br>
+    Current Player Win: ${winRatePlayer} <br> 
+    Current Computer Win: ${winRateComputer} <br> 
+    Current Draws: ${drawRate}`;
+  }
 };
 
 //determine winner function
@@ -155,12 +188,25 @@ var dealTwoCards = function () {
   //generate combined score of all the cards in the computer's hand
   for (i = 0; i < handsComputer.length; i++) {
     comScore += handsComputer[i].rank;
-    console.log(`rank = ` + handsComputer[i].rank);
-    console.log(`score = ` + comScore);
   }
   //generate combined score of all the cards in the player's hand
   for (i = 0; i < handsPlayer.length; i++) {
     playerScore += handsPlayer[i].rank;
+  }
+  if (
+    (handsComputer[0].name == `Ace` &&
+      handsComputer[1].name == (`King` || `Queen` || `Jack`)) ||
+    (handsComputer[1].name == `Ace` &&
+      handsComputer[0].name == (`King` || `Queen` || `Jack`))
+  ) {
+    comScore = 21;
+  } else if (
+    (handsPlayer[0].name == `Ace` &&
+      handsPlayer[1].name == (`King` || `Queen` || `Jack`)) ||
+    (handsPlayer[1].name == `Ace` &&
+      handsPlayer[0].name == (`King` || `Queen` || `Jack`))
+  ) {
+    playerScore = 21;
   }
 };
 
