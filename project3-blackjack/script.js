@@ -228,14 +228,21 @@ var main = function (input) {
   if (gameMode == `Deal2Cards`) {
     dealTwoCards();
     outputMsg = checkForBlackjack();
-    console.log(outputMsg);
     if (!outputMsg == ``) {
       return outputMsg;
     }
     //gameMode = `HitOrStand`;
-    //outputMsg = `Test`;
-  }
-
+    //outputMsg = "Hit or Stand?";
+    //return outputMsg;
+  } //else if (gameMode == `HitOrStand`) {
+  //if (input == `Hit`) {
+  //var i = 2;
+  //handsPlayer.push(shuffledDeck.pop());
+  // playerScore += handsPlayer[i].rank;
+  //outputMsg = `You drew ${handsPlayer[i].name} of ${handsPlayer[i].suit}. Your score is ${playerScore}`;
+  //}
+  //return outputMsg;
+  //}
   outputMsg = outcomeBlackJack();
   return outputMsg;
 };
