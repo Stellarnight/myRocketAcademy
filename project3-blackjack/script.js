@@ -235,28 +235,30 @@ var main = function (input) {
     outputMsg =
       `You drew` +
       helpfulFunctionPlayer() +
-      ` .Your total score is ${playerScore}. Hit or Stand?`;
-    const createHitButton = document.createElement("#hit-button");
-    const innerTextHitButton = createHitButton.innerHTML("Hit!");
-    const parentHitButton = document.getElementById("#submit-button");
-    parentHitButton.appendChild(createHitButton);
-
-    //shuffledDeckV2 = shuffledDeck; //preserve the shuffled deck because once line 241 is triggered, the deck would get refreshed
-    //return outputMsg;
+      ` .Your total score is ${playerScore}. <br>  Computer's hand was` +
+      helpfulFunctionComputer() +
+      ` and its score is ${comScore}. <br>   Hit or Stand?`;
+    //const createHitButton = document.createElement("#hit-button");
+    //const innerTextHitButton = createHitButton.innerHTML("Hit!");
+    //const parentHitButton = document.getElementById("#submit-button");
+    //parentHitButton.appendChild(createHitButton);
+    return outputMsg;
   } else if (gameMode == `HitOrStand`) {
     if (input == `Hit`) {
-      var i = 2;
-      //handsPlayer.push(shuffledDeckV2.pop());
-      //playerScore += handsPlayer[i].rank;
-      //console.log(handsPlayer[0].rank);
-      //console.log(playerScore);
-      //outputMsg = `You drew ${handsPlayer[i].name} of ${handsPlayer[i].suit}. Your score is ${playerScore}. Do you want to hit again?`;
-      //i++;
-      //return outputMsg;
-      return "hit!";
+      handsPlayer.push(shuffledDeck.pop());
+      console.log(handsPlayer[handsPlayer.length - 1]);
+      playerScore += handsPlayer[handsPlayer.length - 1].rank;
+      outputMsg = `You drew ${handsPlayer[handsPlayer.length - 1].name} of ${
+        handsPlayer[handsPlayer.length - 1].suit
+      }. Your score is ${playerScore}. Do you want to hit again?`;
+      return outputMsg;
+    } else if (input == `Stand`) {
+      outputMsg = outcomeBlackJack();
+      gameMode = `Deal2Cards`;
+      return outputMsg;
     }
   }
-  outputMsg = outcomeBlackJack();
+  //outputMsg = outcomeBlackJack();
   return outputMsg;
 };
 
