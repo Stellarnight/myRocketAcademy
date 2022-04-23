@@ -139,11 +139,10 @@ var outcomeBlackJack = function () {
     Current Player Win: ${winRatePlayer} <br> 
     Current Computer Win: ${winRateComputer} <br> 
     Current Draws: ${drawRate}`;
-    //return msg;
   } else if (
     playerScore > comScore ||
     comScore > 21 ||
-    (playerScore == 21 && !comScore == 21)
+    (playerScore == 21 && comScore != 21)
   ) {
     winRatePlayer++;
     msg =
@@ -157,11 +156,10 @@ var outcomeBlackJack = function () {
     Current Player Win: ${winRatePlayer} <br> 
     Current Computer Win: ${winRateComputer} <br> 
     Current Draws: ${drawRate}`;
-    //return msg;
   } else if (
     comScore > playerScore ||
     playerScore > 21 ||
-    (!playerScore == 21 && comScore == 21)
+    (playerScore != 21 && comScore == 21)
   ) {
     winRateComputer++;
     msg =
@@ -175,8 +173,6 @@ var outcomeBlackJack = function () {
     Current Player Win: ${winRatePlayer} <br> 
     Current Computer Win: ${winRateComputer} <br> 
     Current Draws: ${drawRate}`;
-    //console.log(handsPlayer);
-    ///return msg;
   }
   return msg;
 };
