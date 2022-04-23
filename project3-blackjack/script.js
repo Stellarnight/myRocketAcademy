@@ -177,6 +177,18 @@ var outcomeBlackJack = function () {
   return msg;
 };
 
+//Check for player busting
+var playerBust = function () {
+  if (playerScore > 21) {
+    winRateComputer += 1;
+    var msg = `Player has busted with a score of ${playerScore}. Player lost! <br> Computer wins with score ${comScore}. <br>
+    Current Player Win: ${winRatePlayer} <br> 
+    Current Computer Win: ${winRateComputer} <br> 
+    Current Draws: ${drawRate}`;
+    return msg;
+  }
+};
+
 //Initial Two Card Deal Mode
 var dealTwoCards = function () {
   for (i = 0; i < 2; i++) {
@@ -242,11 +254,16 @@ var main = function (input) {
   } else if (gameMode == `HitOrStand`) {
     if (input == `Hit`) {
       handsPlayer.push(shuffledDeck.pop());
-      console.log(handsPlayer[handsPlayer.length - 1]);
       playerScore += handsPlayer[handsPlayer.length - 1].rank;
+      outputMsg = playerBust();
+      if (outputMsg != ``) {
+        gameMode = `Deal2Cards`;
+        return outputMsg;
+      }
       outputMsg = `You drew ${handsPlayer[handsPlayer.length - 1].name} of ${
         handsPlayer[handsPlayer.length - 1].suit
       }. Your score is ${playerScore}. Do you want to hit again?`;
+      console.log(outputMsg);
       return outputMsg;
     } else if (input == `Stand`) {
       outputMsg = outcomeBlackJack();
@@ -255,7 +272,7 @@ var main = function (input) {
     }
   }
   //outputMsg = outcomeBlackJack();
-  return outputMsg;
+  //return outputMsg;
 };
 
 //const hitButton = document.querySelector("#hit-button");
