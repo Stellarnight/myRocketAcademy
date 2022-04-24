@@ -190,6 +190,20 @@ var playerBust = function () {
   return msg;
 };
 
+//Is my ace a 1 or a 11?
+var aceEleven = function () {
+  if (playerScore <= 11) {
+    for (var x = 0; x < handsPlayer.length; x += 1) {
+      if (`Ace` == handsPlayer[x].name) {
+        if (playerScore <= 11) {
+          playerScore += 10;
+        }
+      }
+    }
+  }
+  return playerScore;
+};
+
 //Initial Two Card Deal Mode
 var dealTwoCards = function () {
   for (i = 0; i < 2; i++) {
@@ -269,7 +283,11 @@ var main = function (input) {
       return outputMsg;
     } else if (input == `Stand`) {
       gameMode = `playerStands`;
-      outputMsg = `Player has chose to stand. Your score is ${playerScore}. <br> The computer will now act`;
+      playerScore = aceEleven();
+      outputMsg =
+        `Player has chose to stand. Your hand is ` +
+        helpfulFunctionPlayer() +
+        ` .Your score is ${playerScore}. <br> The computer will now act`;
       return outputMsg;
     }
   } else if (gameMode == `playerStands`) {
@@ -277,7 +295,7 @@ var main = function (input) {
       //rules dictate that the dealer has to draw if his score is less than 17
       handsComputer.push(shuffledDeck.pop());
       comScore += handsComputer[handsComputer.length - 1].rank;
-      outputMsg = `Computer had an initial score of ${comScore}. As score was less than 17, <br>
+      outputMsg = `As Computer had an initial score of less than 17, <br>
       Computer drew another card, ${
         handsComputer[handsComputer.length - 1].name
       } of ${handsComputer[handsComputer.length - 1].suit} <br>
