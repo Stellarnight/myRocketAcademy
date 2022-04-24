@@ -114,6 +114,12 @@ The <html> element is known as the root element of a HTML page. All other elemen
         var output = document.querySelector("#output-div");
         output.innerHTML = result;
       });
+      var standButton = document.querySelector("#stand-button");
+      standButton.addEventListener("click", function () {
+        var result = main(`Stand`);
+        var output = document.querySelector("#output-div");
+        output.innerHTML = result;
+      });
     </script>
   </body>
 </html>
