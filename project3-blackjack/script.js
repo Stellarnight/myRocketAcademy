@@ -1,7 +1,7 @@
 //PSEUDO CODE
 // Step 1: Create Deck
 var makeDeck = function () {
-  var suits = ["hearts", "diamonds", "clubs", "spades"];
+  var suits = ["❤️", "💎", "♣️", "♠️"];
   var cardDeck = [];
   for (var i = 0; i < suits.length; i++) {
     for (var j = 1; j < 14; j++) {
@@ -61,6 +61,22 @@ var shuffleCards = function (cardDeck) {
   }
   // Return the shuffled deck
   return cardDeck;
+};
+
+//Graphical DOM Stuff
+var createHitStandButtons = function () {
+  const elem = document.querySelector(`#submit-button`);
+  elem.style.display = `none`; //makes the submit button "disappear"
+  var createHitButton = document.createElement(`button`);
+  createHitButton.id = `HitButton`;
+  createHitButton.innerText = `Hit me!`;
+  var createStandButton = document.createElement(`button`);
+  createStandButton.id = `StandButton`;
+  createStandButton.innerText = `Stand!`;
+  var locationForHitButton = document.querySelector(`.container`);
+  locationForHitButton.appendChild(createHitButton);
+  locationForHitButton.appendChild(createStandButton);
+  return;
 };
 
 //Step 3: Start Blackjack game between Dealer and Player
@@ -177,19 +193,6 @@ var outcomeBlackJack = function () {
   return msg;
 };
 
-//Check for player busting
-var playerBust = function () {
-  var msg = ``;
-  if (playerScore > 21) {
-    winRateComputer += 1;
-    msg = `Player has busted with a score of ${playerScore}. Player lost! <br> Computer wins with score ${comScore}. <br>
-    Current Player Win: ${winRatePlayer} <br> 
-    Current Computer Win: ${winRateComputer} <br> 
-    Current Draws: ${drawRate}`;
-  }
-  return msg;
-};
-
 //Is my ace a 1 or a 11?
 var aceEleven = function () {
   if (playerScore <= 11) {
@@ -265,17 +268,12 @@ var main = function (input) {
     //const innerTextHitButton = createHitButton.innerHTML("Hit!");
     //const parentHitButton = document.getElementById("#submit-button");
     //parentHitButton.appendChild(createHitButton);
+    createHitStandButtons();
     return outputMsg;
   } else if (gameMode == `HitOrStand`) {
     if (input == `Hit`) {
       handsPlayer.push(shuffledDeck.pop());
       playerScore += handsPlayer[handsPlayer.length - 1].rank;
-      //outputMsg = playerBust(); //check if playerScore > 21 which equates to a bust and instant lose.
-      //if (outputMsg != ``) {
-      //playerBust assigns a non-null string if playerScore is >21
-      //gameMode = `Deal2Cards`; //reset game
-      //return outputMsg;
-      //}
       outputMsg = `You drew ${handsPlayer[handsPlayer.length - 1].name} of ${
         handsPlayer[handsPlayer.length - 1].suit
       }. <br>
