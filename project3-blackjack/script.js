@@ -76,6 +76,20 @@ var createHitStandButtons = function () {
   locationForHitButton.appendChild(createStandButton);
   return;
 };
+var reverseButtons = function () {
+  const elem = document.querySelector(`#submit-button`);
+  elem.style.visibility = `visible`; //makes the submit button "disappear"
+  if (gameMode == `playerStands`) {
+    elem.innerText = "Reveal the Winner!";
+    var createHitButton = document.querySelector(`#hit-button`);
+    createHitButton.style.visibility = `hidden`;
+    var createStandButton = document.querySelector(`#stand-button`);
+    createStandButton.style.visibility = `hidden`;
+  } else if (gameMode == `Deal2Cards`) {
+    elem.innerText = "Lets Play Again!";
+  }
+  return;
+};
 
 //Step 3: Start Blackjack game between Dealer and Player
 //Global Variables here
@@ -280,6 +294,7 @@ var main = function (input) {
         `Player has chose to stand. Your hand is ` +
         helpfulFunctionPlayer() +
         ` .Your score is ${playerScore}. <br> The computer will now act`;
+      reverseButtons();
       return outputMsg;
     }
   } else if (gameMode == `playerStands`) {
@@ -296,24 +311,7 @@ var main = function (input) {
     }
     outputMsg = outcomeBlackJack();
     gameMode = `Deal2Cards`;
+    reverseButtons();
     return outputMsg;
   }
 };
-
-//const hitButton = document.querySelector("#hit-button");
-//console.log(hitButton);
-//hitButton.addEventListener("click", () => {
-// Store the output of main() in a new variable
-//var result = main("Hit"); // "hit!"
-
-// Display result in output element
-//var output = document.querySelector("#output-div");
-//output.innerHTML = result;
-//});
-
-//Step 5: Check for instant blackjack and determine winner or draw
-//Step 6: Check if player needs or wants to hit; if need to hit, issue 1 x card
-//Step 7: Check if dealer needs or wants to hit; if need to hit, issue 1 x card
-//step 8: check if anybody busts at this stage
-//step 9: repeat step 6 to 8 if required
-//Step 10: comapre score and output message
