@@ -66,13 +66,22 @@ The <html> element is known as the root element of a HTML page. All other elemen
       <!-- The <p> tag defines a paragraph element. -->
       <p>
         In this game, the player will play against the dealer (the computer) in
-        a game of blackjack. <br />
-        The point of the game is to get a score as close to if not equal to 21
-        from combining the values of the cards in your hand, without going over
-        21 which is an automatic loss a.k.a a bust<br />
-        The rules of Blackjack is simple:<br />
-        (1) Both the player and the dealer are issued with two cards
-        respectively from a shuffled deck.
+        a game of blackjack. <br /><br />
+
+        The aim of Blackjack is to have a higher score than the dealer while not
+        going over 21<br /><br />
+        The game will flow as such:<br />
+        (1) Both the player and the dealer are dealt two cards respectively from
+        a shuffled deck.<br />
+        (2) The player after examining his/her cards, chooses to either hit
+        (draw another card) or stand (stay with current hand)<br />
+        (3) The player may draw as many cards as he/she likes. Once he/she
+        stands, the computer will hit or stand accordingly<br />
+        (4) The computer will always act after the player. The computer must hit
+        if its hand is less than 17<br />
+        (5) Once the computer is done, both the player and the computer will
+        compare their score to determine the winner<br /><br />
+        <b>If you are ready, press the Button to start!</b>
       </p>
       <!-- The self-closing <input /> tag represents a field for a user to enter input. -->
       <input id="input-field" />
