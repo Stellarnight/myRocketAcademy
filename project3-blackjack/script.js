@@ -140,7 +140,7 @@ var outcomeBlackJack = function () {
     Current Computer Win: ${winRateComputer} <br> 
     Current Draws: ${drawRate}`;
   } else if (
-    playerScore > comScore ||
+    (playerScore > comScore && playerScore < 22) ||
     comScore > 21 ||
     (playerScore == 21 && comScore != 21)
   ) {
@@ -157,7 +157,7 @@ var outcomeBlackJack = function () {
     Current Computer Win: ${winRateComputer} <br> 
     Current Draws: ${drawRate}`;
   } else if (
-    comScore > playerScore ||
+    (comScore > playerScore && comScore < 22) ||
     playerScore > 21 ||
     (playerScore != 21 && comScore == 21)
   ) {
@@ -256,24 +256,38 @@ var main = function (input) {
     if (input == `Hit`) {
       handsPlayer.push(shuffledDeck.pop());
       playerScore += handsPlayer[handsPlayer.length - 1].rank;
-      outputMsg = playerBust(); //check if playerScore > 21 which equates to a bust and instant lose.
-      if (outputMsg != ``) {
-        //playerBust assigns a non-null string if playerScore is >21
-        gameMode = `Deal2Cards`; //reset game
-        return outputMsg;
-      }
+      //outputMsg = playerBust(); //check if playerScore > 21 which equates to a bust and instant lose.
+      //if (outputMsg != ``) {
+      //playerBust assigns a non-null string if playerScore is >21
+      //gameMode = `Deal2Cards`; //reset game
+      //return outputMsg;
+      //}
       outputMsg = `You drew ${handsPlayer[handsPlayer.length - 1].name} of ${
         handsPlayer[handsPlayer.length - 1].suit
-      }. Your score is ${playerScore}. Do you want to hit again?`;
+      }. <br>
+      Your score is ${playerScore}. Do you want to Hit again or Stand?`;
       return outputMsg;
     } else if (input == `Stand`) {
-      outputMsg = outcomeBlackJack();
-      gameMode = `Deal2Cards`;
+      gameMode = `playerStands`;
+      outputMsg = `Player has chose to stand. Your score is ${playerScore}. <br> The computer will now act`;
       return outputMsg;
     }
+  } else if (gameMode == `playerStands`) {
+    while (comScore < 17) {
+      //rules dictate that the dealer has to draw if his score is less than 17
+      handsComputer.push(shuffledDeck.pop());
+      comScore += handsComputer[handsComputer.length - 1].rank;
+      outputMsg = `Computer had an initial score of ${comScore}. As score was less than 17, <br>
+      Computer drew another card, ${
+        handsComputer[handsComputer.length - 1].name
+      } of ${handsComputer[handsComputer.length - 1].suit} <br>
+      Computer's score is now ${comScore}.`;
+      return outputMsg;
+    }
+    outputMsg = outcomeBlackJack();
+    gameMode = `Deal2Cards`;
+    return outputMsg;
   }
-  //outputMsg = outcomeBlackJack();
-  //return outputMsg;
 };
 
 //const hitButton = document.querySelector("#hit-button");
