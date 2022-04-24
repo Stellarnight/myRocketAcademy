@@ -82,6 +82,8 @@ The <html> element is known as the root element of a HTML page. All other elemen
       <button id="submit-button">Press to start Blackjack!</button>
       <p id="output-text">Output:</p>
       <div class="output-div" id="output-div"></div>
+      <button class="HitOrStandButtons" id="hit-button">Hit Me!</button>
+      <button class="HitOrStandButtons" id="stand-button">Stand!</button>
     </div>
     <!-- Everything below this is incorporating JavaScript programming logic into the webpage. -->
     <!-- The script tag encloses JavaScript syntax for the browser to interpret programtically -->
@@ -105,6 +107,12 @@ The <html> element is known as the root element of a HTML page. All other elemen
 
         // Reset input value
         input.value = "";
+      });
+      var hitButton = document.querySelector("#hit-button");
+      hitButton.addEventListener("click", function () {
+        var result = main(`Hit`);
+        var output = document.querySelector("#output-div");
+        output.innerHTML = result;
       });
     </script>
   </body>

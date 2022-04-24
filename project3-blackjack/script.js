@@ -66,13 +66,11 @@ var shuffleCards = function (cardDeck) {
 //Graphical DOM Stuff
 var createHitStandButtons = function () {
   const elem = document.querySelector(`#submit-button`);
-  elem.style.display = `none`; //makes the submit button "disappear"
-  var createHitButton = document.createElement(`button`);
-  createHitButton.id = `HitButton`;
-  createHitButton.innerText = `Hit me!`;
-  var createStandButton = document.createElement(`button`);
-  createStandButton.id = `StandButton`;
-  createStandButton.innerText = `Stand!`;
+  elem.style.visibility = `hidden`; //makes the submit button "disappear"
+  var createHitButton = document.querySelector(`#hit-button`);
+  createHitButton.style.visibility = `visible`;
+  var createStandButton = document.querySelector(`#stand-button`);
+  createStandButton.style.visibility = `visible`;
   var locationForHitButton = document.querySelector(`.container`);
   locationForHitButton.appendChild(createHitButton);
   locationForHitButton.appendChild(createStandButton);
@@ -264,10 +262,6 @@ var main = function (input) {
       ` .Your total score is ${playerScore}. <br>  Computer's hand was` +
       helpfulFunctionComputer() +
       ` and its score is ${comScore}. <br>   Hit or Stand?`;
-    //const createHitButton = document.createElement("#hit-button");
-    //const innerTextHitButton = createHitButton.innerHTML("Hit!");
-    //const parentHitButton = document.getElementById("#submit-button");
-    //parentHitButton.appendChild(createHitButton);
     createHitStandButtons();
     return outputMsg;
   } else if (gameMode == `HitOrStand`) {

@@ -86,6 +86,7 @@ button {
   margin: 0 0 23px 0;
   padding: 0 6px;
   background-color: limegreen;
+  visibility: hidden;
 }
 
 #stand-button {
@@ -94,6 +95,7 @@ button {
   margin: 0 0 23px 0;
   padding: 0 6px;
   background-color: lightpink;
+  visibility: hidden;
 }
 
 .output-div {
